@@ -72,7 +72,11 @@ const Navbar = () => {
           </a>
 
           <button onClick={() => setMenuOpen(true)} className="block md:hidden">
-            <Image src={assets.menu_white} alt="menu" className="w-6" />
+            <Image
+              src={isScroll ? assets.menu_white : assets.menu_black}
+              alt="menu"
+              className="w-6"
+            />
           </button>
         </div>
       </nav>
@@ -107,7 +111,7 @@ const Navbar = () => {
           </a>
         </li>
         <li>
-          <a href="#work" onClick={() => setMenuOpen(false)}>
+          <a href="#projects" onClick={() => setMenuOpen(false)}>
             My Work
           </a>
         </li>
