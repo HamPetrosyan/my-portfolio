@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { motion } from "motion/react";
 import { FaPaperPlane } from "react-icons/fa";
 
 const Contact = () => {
@@ -39,32 +40,58 @@ const Contact = () => {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
       id="contact"
       className="w-full px-[12%] py-10 uppercase font-poppins scroll-mt-20 lg:scroll-mt-40 text-gray"
     >
-      <h4 className="text-center mb-2 text-lg font-semibold">Get In Touch</h4>
+      <motion.h4
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="text-center mb-2 text-lg font-semibold"
+      >
+        Get In Touch
+      </motion.h4>
 
-      <h2 className="text-center text-5xl font-open-sans text-green font-bold">
+      <motion.h2
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="text-center text-5xl font-open-sans text-green font-bold"
+      >
         Contact me
-      </h2>
+      </motion.h2>
 
-      <p className="normal-case max-w-2xl mx-auto text-center mt-5 mb-12">
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        className="normal-case max-w-2xl mx-auto text-center mt-5 mb-12"
+      >
         I'd love to hear from you! If you have any questions, comments, or
         feedback, please use the form below.
-      </p>
+      </motion.p>
 
-      <form
+      <motion.form
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.6 }}
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-2xl mx-auto font-open-sans normal-case"
       >
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-6 mt-10 mb-8">
           <div className="relative flex flex-col">
-            <input
+            <motion.input
+              initial={{ x: -50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
               type="text"
               placeholder="Enter your name"
               {...register("name", { required: true })}
-              className="flex-1 p-3 border border-green rounded-full rounded-tl-none bg-white outline-none focus:ring-1 focus:ring-green duration-100"
+              className="flex-1 p-3 border border-green rounded-full rounded-tl-none outline-none focus:ring-1 focus:ring-green duration-100"
             />
             {errors.name && (
               <p className="absolute left-0 text-red-500 text-sm mt-1 -bottom-5">
@@ -74,7 +101,10 @@ const Contact = () => {
           </div>
 
           <div className="relative flex flex-col">
-            <input
+            <motion.input
+              initial={{ x: 50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
               type="email"
               placeholder="Enter your email"
               {...register("email", {
@@ -84,7 +114,7 @@ const Contact = () => {
                   message: "Invalid email address",
                 },
               })}
-              className="flex-1 p-3 border border-green rounded-full rounded-tl-none bg-white outline-none focus:ring-1 focus:ring-green duration-100"
+              className="flex-1 p-3 border border-green rounded-full rounded-tl-none outline-none focus:ring-1 focus:ring-green duration-100"
             />
             {errors.email && (
               <p className="absolute left-0 text-red-500 text-sm mt-1 -bottom-5">
@@ -95,11 +125,14 @@ const Contact = () => {
         </div>
 
         <div className="relative flex flex-col mb-6">
-          <textarea
+          <motion.textarea
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             rows={6}
             placeholder="Enter your message"
             {...register("message", { required: true })}
-            className="w-full p-4 outline-none border rounded-full rounded-tl-none border-green bg-white focus:ring-1 focus:ring-green"
+            className="w-full p-4 outline-none border rounded-full rounded-tl-none border-green bg-[var(--color-bg)] focus:ring-1 focus:ring-green"
           />
           {errors.message && (
             <p className="absolute left-0 text-red-500 text-sm mt-1 -bottom-5">
@@ -108,20 +141,23 @@ const Contact = () => {
           )}
         </div>
 
-        <button
+        <motion.button
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
           type="submit"
-          className="w-max flex items-center justify-center font-open-sans px-10 py-3 mx-auto rounded-full gap-2 font-medium normal-case shadow-green/50 transition duration-150 shadow-sm border-[0.5px] text-green border-green bg-white hover:bg-green hover:text-white"
+          className="w-max flex items-center justify-center font-open-sans px-10 py-3 mx-auto rounded-full gap-2 font-medium normal-case shadow-green/50 transition duration-150 shadow-sm border-[0.5px] bg-[var(--color-bg)] text-green border-green hover:bg-green hover:text-white"
         >
           Send <FaPaperPlane />
-        </button>
+        </motion.button>
 
         {result && (
           <p className="mt-4 text-center text-lg font-medium text-green">
             {result}
           </p>
         )}
-      </form>
-    </div>
+      </motion.form>
+    </motion.div>
   );
 };
 

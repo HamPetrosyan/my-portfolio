@@ -6,8 +6,10 @@ import { assets } from "@/assets/assets";
 import { FaArrowUp } from "react-icons/fa";
 
 import Image from "next/image";
+import { useTheme } from "@/context";
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScroll, setIsScroll] = useState(false);
 
@@ -44,22 +46,34 @@ const Navbar = () => {
           }`}
         >
           <li>
-            <a href="#top">Home</a>
+            <a href="#top" className={`${isScroll ? "a" : ""}`}>
+              Home
+            </a>
           </li>
           <li>
-            <a href="#about">About Me</a>
+            <a href="#about" className={`${isScroll ? "a" : ""}`}>
+              About Me
+            </a>
           </li>
           <li>
-            <a href="#projects">My Projects</a>
+            <a href="#projects" className={`${isScroll ? "a" : ""}`}>
+              My Projects
+            </a>
           </li>
           <li>
-            <a href="#contact">Contact Me</a>
+            <a href="#contact" className={`${isScroll ? "a" : ""}`}>
+              Contact Me
+            </a>
           </li>
         </ul>
 
         <div className="flex font-poppins items-center gap-4 ml-auto md:ml-0">
-          <button className="p-2.5">
-            <Image src={assets.moon_icon} alt="theme toggle" className="w-6" />
+          <button className="p-2.5" onClick={toggleTheme}>
+            <Image
+              src={theme === "dark" ? assets.sun_icon : assets.moon_icon}
+              alt="theme toggle"
+              className="w-6"
+            />
           </button>
 
           <a
@@ -73,7 +87,7 @@ const Navbar = () => {
 
           <button onClick={() => setMenuOpen(true)} className="block md:hidden">
             <Image
-              src={isScroll ? assets.menu_white : assets.menu_black}
+              src={theme === "dark" ? assets.menu_white : assets.menu_black}
               alt="menu"
               className="w-6"
             />
@@ -84,12 +98,12 @@ const Navbar = () => {
       {menuOpen && (
         <div
           onClick={() => setMenuOpen(false)}
-          className="fixed top-0 left-0 w-full h-full backdrop-blur-md bg-white/20 z-40"
+          className="fixed top-0 left-0 w-full h-full backdrop-blur-md bg-[var(--color-bg)]/20 z-40"
         />
       )}
 
       <ul
-        className={`flex md:hidden flex-col gap-4 py-20 px-10 fixed top-0 bottom-0 w-64 h-screen transition-all duration-400 z-50 bg-green/70 backdrop-blur-md text-white ${
+        className={`flex md:hidden flex-col gap-4 py-20 px-10 fixed top-0 bottom-0 w-64 h-screen transition-all duration-400 z-50 bg-green/70 backdrop-blur-md text-[var(--text-gray)] ${
           menuOpen ? "right-0" : "-right-64"
         }`}
       >

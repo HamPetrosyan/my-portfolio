@@ -1,4 +1,7 @@
 import { Poppins, Open_Sans } from "next/font/google";
+
+import ThemeProvider from "@/context";
+
 import "./globals.css";
 
 const poppins = Poppins({
@@ -25,8 +28,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${fontFamily} leading-8 overflow-x-hidden`}>
-        {children}
+      <body
+        className={`${fontFamily} leading-8 overflow-x-hidden bg-[var(--color-bg)] text-[var(--color-gray)]`}
+      >
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

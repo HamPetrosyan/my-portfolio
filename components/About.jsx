@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { motion } from "motion/react";
+
 import { assets, infoList } from "@/assets/assets";
 
 import Image from "next/image";
@@ -7,25 +9,55 @@ const About = () => {
   const [selected, setSelected] = useState(null);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1 }}
       id="about"
       className="w-full px-[12%] py-10 uppercase font-poppins scroll-mt-20 lg:scroll-mt-40 text-gray"
     >
-      <h4 className="text-center mb-2 text-lg font-semibold">Intruduction</h4>
-      <h2 className="text-center text-5xl font-open-sans text-green font-bold">
+      <motion.h4
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="text-center mb-2 text-lg font-semibold"
+      >
+        Intruduction
+      </motion.h4>
+      <motion.h2
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        className="text-center text-5xl font-open-sans text-green font-bold"
+      >
         About me
-      </h2>
+      </motion.h2>
 
-      <div className="flex w-full flex-col lg:flex-row items-center gap-20 my-20">
-        <div className="w-64 sm:w-80 rounded-3xl max-w-none">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="flex w-full flex-col lg:flex-row items-center gap-20 my-20"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="w-64 sm:w-80 rounded-3xl max-w-none"
+        >
           <Image
             src={assets.user_image}
             alt="user"
             className="w-full rounded-3xl"
           />
-        </div>
+        </motion.div>
 
-        <div className="flex-1 normal-case">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex-1 normal-case"
+        >
           <p className="mb-10 max-w-2xl">
             I am a dedicated Front-End Developer with a robust foundation in
             HTML, CSS, and JavaScript, and extensive hands-on experience with
@@ -37,9 +69,15 @@ const About = () => {
             area.
           </p>
 
-          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl">
+          <motion.ul
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl"
+          >
             {infoList.map(({ icon: Icon, title, description, details }, i) => (
-              <li
+              <motion.li
+                whileInView={{ scale: 1.05 }}
                 key={i}
                 onClick={() => {
                   if (title === "Projects") {
@@ -53,14 +91,16 @@ const About = () => {
                 }}
                 className="text-green rounded-xl p-6 cursor-pointer hover:scale-110 duration-400  shadow-lg shadow-green/50 hover:shadow-none hover:bg-green/50 hover:text-white"
               >
-                <Icon className="text-gray text-4xl mb-4" />
+                <Icon className="text-[var(--color-gray)] text-4xl mb-4" />
                 <h3 className="my-4 font-semibold">{title}</h3>
-                <p className="text-sm text-gray">{description}</p>
-              </li>
+                <p className="text-sm text-[var(--color-gray)]">
+                  {description}
+                </p>
+              </motion.li>
             ))}
-          </ul>
-        </div>
-      </div>
+          </motion.ul>
+        </motion.div>
+      </motion.div>
 
       {selected && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -69,12 +109,12 @@ const About = () => {
             onClick={() => setSelected(null)}
           />
 
-          <div className="relative z-10 bg-white rounded-lg w-[90%] max-w-2xl p-6 animate-fadeInUp shadow-xl">
+          <div className="relative z-10 bg-[var(--color-bg)] text-[var(--color-text)] rounded-lg w-[90%] max-w-2xl p-6 animate-fadeInUp shadow-xl">
             <h2 className="text-2xl font-bold text-green mb-4">
               {selected.title}
             </h2>
 
-            <ul className="ml-5 space-y-2 text-gray normal-case">
+            <ul className="ml-5 space-y-2 text-[var(--color-text)] normal-case">
               {selected.details?.map((d, i) => {
                 if (
                   selected.title === "Tech Skills" &&
@@ -85,7 +125,7 @@ const About = () => {
 
                   return (
                     <li className="list-none" key={i}>
-                      <span className="font-semibold uppercase text-gray">
+                      <span className="font-semibold uppercase text-[var(--color-text)]">
                         {label}:
                       </span>
                       <span className="ml-1">{rest}</span>
@@ -114,7 +154,7 @@ const About = () => {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

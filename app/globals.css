@@ -5,12 +5,28 @@
   --font-open-sans: var(--font-open-sans), sans-serif;
   --color-green: #00ff99;
   --color-gray: #666;
-  --color-dark-gray: rgb(17, 17, 17);
+  --color-bg: #fff;
   --color-lightHover: #fcf4ff;
   --color-darkHover: #2a004a;
   --shadow-black: 0 4px 4px rgba(0, 0, 0, 0.25);
   --shadow-white: 4px 4px 0 #fff
 }
+
+@layer components {
+  .a {
+    @apply relative inline-block;
+  }
+
+  .a::after {
+    content: "";
+    @apply absolute left-0 bottom-0 w-0 h-[2px] bg-current transition-all duration-300;
+  }
+
+  .a:hover::after {
+    @apply w-full;
+  }
+}
+
 
 @layer utilities {
   @keyframes fadeInUp {
@@ -26,13 +42,13 @@
   }
 
   .animate-fadeInUp {
-    animation: fadeInUp 0.4s ease-out;
-    animation-fill-mode: forwards;
+    animation: fadeInUp 0.4s ease-out forwards;
   }
 }
 
-:root {
-  background-color: #ffffff;
+.dark {
+  --color-gray: #e5e5e5;
+  --color-bg: #0c141b;
 }
 
 button {
