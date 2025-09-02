@@ -16,7 +16,7 @@ const Footer = () => {
 
       <div className="w-max flex items-center gap-2 mx-auto">
         <IoMdCall size={25} className="text-green" />
-        hampetrosyan007@gmail.com
+        +374 77 45 19 29
       </div>
 
       <div className="text-center sm:flex items-center justify-between border-t border-green mx-[10%] mt-12 py-6">
