@@ -67,7 +67,7 @@ const Header = () => {
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          href="/hamlet-front-resume.pdf"
+          href="/CV-Hamlet-Petrosyan.pdf"
           download
           className="group px-8 py-3 rounded-full flex items-center gap-2 font-medium shadow-green/50 transition-colors duration-150 shadow-sm text-green border border-green hover:bg-green hover:text-white"
         >
